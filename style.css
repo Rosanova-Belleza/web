@@ -15,7 +15,7 @@ body {
 
 header {
     background: linear-gradient(rgba(218, 166, 170, 0.6), rgba(218, 166, 170, 0.6)), 
-                url('images/rosa.png');
+                url('../images/rosa.png');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
