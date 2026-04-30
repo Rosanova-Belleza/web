@@ -14,8 +14,11 @@ body {
 }
 
 header {
+    background-image: url("images/rosa.png");
+/* O si está dentro de una carpeta CSS */
+background-image: url("../images/rosa.png");
     background: linear-gradient(rgba(218, 166, 170, 0.6), rgba(218, 166, 170, 0.6)), 
-                url('./images/rosa.png');
+                url('../images/rosa.png');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
