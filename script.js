@@ -126,3 +126,24 @@ function toggleDetails(btn) {
     details.classList.toggle('active');
     btn.classList.toggle('rotate');
 }
+document.querySelectorAll('.anim-img').forEach(img => {
+    // Efecto al entrar el mouse
+    img.addEventListener('mouseenter', () => {
+        img.style.transition = "transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+        img.style.transform = "scale(1.1) rotate(2deg)";
+    });
+
+    // Efecto al salir el mouse
+    img.addEventListener('mouseleave', () => {
+        img.style.transform = "scale(1) rotate(0deg)";
+    });
+
+    // Pequeño efecto de "pulso" al hacer click
+    img.addEventListener('mousedown', () => {
+        img.style.transform = "scale(0.95)";
+    });
+    
+    img.addEventListener('mouseup', () => {
+        img.style.transform = "scale(1.1)";
+    });
+});
