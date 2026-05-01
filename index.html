@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosa Nova | Belleza Radiante</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Corregido el favicon y enlaces de fuentes si fueran necesarios -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🌹</text></svg>">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Barras sociales -->
+    <div class="social-bar">
+        <a href="https://wa.me/573204939307" class="icon whatsapp" target="_blank">
+            <img src="images/whatsapp-icon.png" alt="WhatsApp" class="social-icon">
+        </a>
+        <a href="https://www.facebook.com/share/1GQfmdy3ax/?mibextid=wwXIfr" class="icon facebook" target="_blank">
+            <img src="images/facebook-icon.png" alt="Facebook" class="social-icon">
+        </a>
+        <a href="https://www.tiktok.com/@rosanovaoficial" class="icon tiktok" target="_blank">
+            <img src="images/tiktok-icon.png" alt="TikTok" class="social-icon">
+        </a>
+    </div>
+
+    <header>
+    <nav>
+        <div class="logo" style="transform: translateX(-20px);">Rosa 🌹 Nova</div>
+        
+        <!-- Contenedor de los botones de categoría -->
+        <div class="nav-categorias">
+            <a href="#seccion-maquillaje" class="btn-categoria">MAQUILLAJE</a>
+            <a href="#seccion-facial" class="btn-categoria">CUIDADO FACIAL</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Tu piel, nuestra mejor obra</h1>
+        <p>Descubre el brillo natural que hay en ti.</p>
+    </div>
+
+    <div class="cart-icon-header">
+        <i data-lucide="shopping-cart"></i>
+        <span id="cart-count-header">0</span>
+    </div>
+</header>
+
+    <main>
+        <!-- Contenedor donde se cargan los productos (JS lo limpia al iniciar) -->
+        <section class="product-grid" id="grid-productos"></section>
+
+        <!-- SECCIÓN DE RESUMEN: Fuera del grid para que no se borre -->
+        <section id="resumen-pedido" class="resumen-container">
+            <h3>🌹 Tu Carrito de Compras</h3>
+            <div class="resumen-detalles">
+                <p>Productos añadidos: <span id="cart-count">0</span></p>
+                <p class="total-texto">Total a pagar: <strong id="total-precio">$0</strong></p>
+            </div>
+
+            <button onclick="enviarWhatsApp()" class="btn-comprar-wa">
+                <i data-lucide="shopping-bag"></i> Finalizar Pedido por WhatsApp
+            </button>
+        </section>
+    </main>
+
+    <!-- Botón flotante de contacto directo -->
+    <a href="https://wa.me/573204939307" class="float-wa" target="_blank">
+        <i data-lucide="message-circle"></i>
+        <span>¿Dudas? Escríbenos</span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
