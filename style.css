@@ -32,6 +32,21 @@ header {
     text-align: center;
     position: relative;
 }
+/* --- ESTO ES LO QUE ARREGLA LA PORTADA EN MÓVIL SIN DAÑAR LO DEMÁS --- */
+@media (max-width: 600px) {
+    header {
+        /* En móvil el 'fixed' rompe la imagen, lo cambiamos a 'scroll' */
+        background-attachment: scroll !important;
+        /* Ajustamos la altura para que la imagen de la modelo/rosa luzca mejor */
+        height: 75vh;
+        /* Centramos la imagen para que no se corte la cara o el producto */
+        background-position: center center;
+    }
+}
+
+/* --- EL RESTO DE TU CÓDIGO SE MANTIENE EXACTAMENTE IGUAL --- */
+/* Mantén aquí tus estilos de .social-bar, .icon, .product-grid, .btn-categoria, etc. */
+/* No cambies las posiciones 'fixed' de tus botones de WhatsApp ni de las redes sociales */
 
 /* Icono Carrito en Header */
 .cart-icon-header {
