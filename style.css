@@ -210,3 +210,26 @@ header {
         border-radius: 50%;
     }
 }
+/* Ocultar detalles por defecto */
+.details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease;
+    opacity: 0;
+}
+
+/* Cuando JS activa la clase */
+.details.active {
+    max-height: 200px; /* Un valor lo suficientemente grande para el texto */
+    opacity: 1;
+    margin-top: 10px;
+}
+
+/* Rotación del ícono */
+.chevron-btn i {
+    transition: transform 0.3s ease;
+}
+
+.chevron-btn.rotate i {
+    transform: rotate(180deg);
+}
