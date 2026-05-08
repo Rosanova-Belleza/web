@@ -1,4 +1,4 @@
-// 1. Lista de productos (Se mantiene igual)
+// 1. Lista de productos
 const misProductos = [
     {
         nombre: "Crema Facial Ácido Hialurónico Bioaqua",
@@ -100,7 +100,7 @@ function cargarProductos() {
         card.className = 'product-card';
 
         card.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
+            <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image" loading="lazy">
             <div class="product-info">
                 <h3>${producto.nombre}</h3>
                 <p class="price">${producto.precio}</p>
@@ -119,24 +119,33 @@ function cargarProductos() {
     if (window.lucide) lucide.createIcons();
 }
 
-// --- FUNCIÓN AGREGADA: Controla la visibilidad de los detalles ---
+// 4. Control de detalles (Acordeón)
 function toggleDetails(btn) {
-    // Buscamos el div 'details' que está justo después del botón
     const details = btn.nextElementSibling;
+    const icon = btn.querySelector('i');
+    
     if (details) {
         details.classList.toggle('active');
+        btn.classList.toggle('rotate');
     }
-    // Rotamos la flechita
-    btn.classList.toggle('rotate');
 }
 
-// 4. Lógica del Carrito
+// 5. Lógica del Carrito
 function agregarAlCarrito(index) {
     const productoSeleccionado = misProductos[index];
     carrito.push(productoSeleccionado);
     actualizarContadorCarrito();
-    // Reemplacé el alert por un log para no interrumpir, pero puedes dejarlo
-    console.log(`✅ ${productoSeleccionado.nombre} añadido.`);
+    
+    // Feedback visual suave en lugar de un alert molesto
+    const btn = event.target;
+    const originalText = btn.innerText;
+    btn.innerText = "¡Añadido! ✨";
+    btn.style.backgroundColor = "#c5a059";
+    
+    setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.backgroundColor = "";
+    }, 1500);
 }
 
 function actualizarContadorCarrito() {
@@ -150,6 +159,7 @@ function actualizarContadorCarrito() {
     if (totalElemento) {
         let sumaTotal = 0;
         carrito.forEach(p => {
+            // Limpia el precio de símbolos y puntos para sumar correctamente
             const precio = parseInt(p.precio.replace(/[^0-9]/g, ""));
             sumaTotal += precio;
         });
@@ -157,7 +167,7 @@ function actualizarContadorCarrito() {
     }
 }
 
-// 5. Envío a WhatsApp
+// 6. Envío a WhatsApp
 function enviarWhatsApp() {
     if (carrito.length === 0) {
         alert("El carrito está vacío. ¡Añade algunos productos! 🌹");
@@ -165,23 +175,26 @@ function enviarWhatsApp() {
     }
 
     const telefonoNegocio = "573204939307";
-    let mensaje = "¡Hola! Me gustaría realizar el siguiente pedido en Rosa Nova: \n\n";
+    let mensaje = "¡Hola! Me gustaría realizar el siguiente pedido en *Rosa Nova* 🌹: \n\n";
     let total = 0;
 
-    carrito.forEach((producto, index) => {
-        mensaje += `*${index + 1}.* ${producto.nombre} - ${producto.precio}\n`;
-        const precioNumerico = parseInt(producto.precio.replace(/[^0-9]/g, ""));
-        total += precioNumerico;
+    // Agrupar productos repetidos para que el mensaje sea más corto
+    const resumen = {};
+    carrito.forEach(p => {
+        resumen[p.nombre] = (resumen[p.nombre] || 0) + 1;
+        total += parseInt(p.precio.replace(/[^0-9]/g, ""));
     });
 
-    mensaje += `\n*Total estimado:* $${total.toLocaleString('es-CO')}`;
+    for (const [nombre, cantidad] of Object.entries(resumen)) {
+        mensaje += `✅ *${cantidad}x* ${nombre}\n`;
+    }
+
+    mensaje += `\n💰 *Total a pagar:* $${total.toLocaleString('es-CO')}`;
     mensaje += `\n\n¡Quedo atento para coordinar el pago y envío!`;
 
-    const mensajeCodificado = encodeURIComponent(mensaje);
-    const urlWhatsApp = `https://wa.me/${telefonoNegocio}?text=${mensajeCodificado}`;
-
+    const urlWhatsApp = `https://wa.me/${telefonoNegocio}?text=${encodeURIComponent(mensaje)}`;
     window.open(urlWhatsApp, '_blank');
 }
 
-// 6. Iniciar la página
-cargarProductos();
+// Iniciar
+document.addEventListener('DOMContentLoaded', cargarProductos);
