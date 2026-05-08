@@ -6,214 +6,156 @@
     --blanco-rosa: #f3cfee;
     --fondo-suave: #fffafb;
     --whatsapp-color: #25d366;
+    --fuente-primaria: 'Poppins', sans-serif;
 }
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--fuente-primaria);
     background-color: var(--fondo-suave);
     color: var(--texto);
     scroll-behavior: smooth;
+    overflow-x: hidden; /* Evita el desbordamiento horizontal */
 }
 
-/* Header Estilizado */
-header {
-    background: linear-gradient(rgba(218, 166, 170, 0.6), rgba(218, 166, 170, 0.6)),
-                url("images/rosa.png");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 60vh;
+/* --- NAVBAR SUPERIOR --- */
+.navbar {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
+    padding: 15px 5%;
+    background: rgba(255, 255, 255, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* Icono Carrito en Header */
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--rosa-oscuro);
+}
+
 .cart-icon-header {
-    position: absolute;
-    top: 20px;
-    right: 30px;
     background: white;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-radius: 50px;
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
-#cart-count-header {
+/* --- HEADER / HERO --- */
+header {
+    background: linear-gradient(rgba(218, 166, 170, 0.4), rgba(218, 166, 170, 0.4)),
+                url("images/rosa.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    min-height: 70vh; /* Cambiado de height a min-height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem); /* Tamaño fluido */
+    margin-bottom: 10px;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* --- CATEGORÍAS --- */
+.nav-categorias {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Importante para móviles */
+}
+
+.btn-categoria {
+    background-color: var(--rosa-oscuro);
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
     font-weight: bold;
-    color: var(--rosa-oscuro);
+    transition: 0.3s;
+    border: 2px solid var(--rosa-oscuro);
+    min-width: 200px;
 }
 
-/* Barra de Redes Sociales Corregida */
+.btn-categoria:hover {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
+/* --- REDES SOCIALES FLOTANTES --- */
 .social-bar {
     position: fixed;
-    right: 20px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     z-index: 1000;
 }
 
-.social-icon {
-    width: 30px;
-    height: 30px;
-}
-
 .icon {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    background-color: white; /* Fondo blanco para resaltar el icono */
 }
 
-.icon:hover {
-    transform: scale(1.1);
+.social-icon {
+    width: 24px;
+    height: 24px;
 }
 
-/* Cuadrícula de productos */
+/* --- PRODUCTOS --- */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 50px 10%;
+    gap: 25px;
+    padding: 50px 5%;
 }
 
-/* Tarjeta de producto */
 .product-card {
     background: white;
-    border-radius: 20px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(212, 165, 165, 0.15);
-    transition: transform 0.3s ease;
-    border: 1px solid var(--rosa-principal);
-    display: flex;
-    flex-direction: column;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    transition: 0.3s;
 }
 
 .product-image {
     width: 100%;
-    height: 300px;
+    height: 250px;
     object-fit: cover;
 }
 
-.product-info {
-    padding: 20px;
-    text-align: center;
-}
-
-/* El desplegable de descripción */
-.details {
-    display: none; /* Se activa vía JS */
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    color: #666;
-    background-color: #fff9f9;
-}
-
-.details.active {
-    display: block;
-    animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.chevron-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--rosa-oscuro);
-    padding: 10px;
-    transition: 0.3s;
-}
-
-.rotate {
-    transform: rotate(180deg);
-}
-
-.buy-btn {
-    background-color: var(--rosa-oscuro);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    margin-top: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.buy-btn:hover {
-    background-color: var(--dorado);
-}
-
-/* SECCIÓN RESUMEN DE PEDIDO (Corregida) */
-.resumen-container {
-    background-color: #fff0f5;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 500px;
-    margin: 40px auto;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    border: 2px dashed var(--rosa-principal);
-}
-
-.total-texto {
-    font-size: 1.4rem;
-    margin: 15px 0;
-}
-
-#total-precio {
-    color: var(--rosa-oscuro);
-    font-size: 1.8rem;
-}
-
-/* Botón Finalizar WhatsApp */
-.btn-comprar-wa {
-    background-color: var(--whatsapp-color);
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: 0.3s;
-    text-decoration: none;
-}
-
-.btn-comprar-wa:hover {
-    background-color: #128c7e;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-}
-
-/* Botón flotante */
+/* --- BOTONES Y FLOTANTES --- */
 .float-wa {
     position: fixed;
     bottom: 20px;
@@ -226,49 +168,45 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     z-index: 2000;
-}
-/* Contenedor para ubicar los botones a los lados */
-.nav-categorias {
-    display: flex;
-    justify-content: center; /* Los centra inicialmente */
-    gap: 40px; /* Espacio entre los dos cuadros */
-    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* Estilo de los cuadros (Botones) */
-.btn-categoria {
-    display: inline-block;
-    background-color: var(--rosa-oscuro); /* El color de la página */
-    color: white;
-    padding: 15px 40px; /* Grosor y largo del cuadro */
-    text-decoration: none;
-    font-size: 0.9rem;
-    letter-spacing: 2px; /* Espaciado entre letras como en la imagen */
-    font-weight: bold;
-    border-radius: 0; /* Cuadrados, sin bordes redondeados */
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-}
+/* --- MEDIA QUERIES (RESPONSIVIDAD CRÍTICA) --- */
+@media (max-width: 768px) {
+    header {
+        min-height: 80vh;
+        background-attachment: scroll; /* Mejor rendimiento en móviles */
+    }
 
-.btn-categoria:hover {
-    background-color: transparent;
-    border: 1px solid var(--rosa-oscuro);
-    color: var(--rosa-oscuro);
-}
+    .social-bar {
+        right: 10px; /* Pegamos más a la orilla los iconos */
+    }
 
-/* Ajuste para que se vean bien en móviles (uno sobre otro si el espacio es poco) */
-@media (max-width: 600px) {
-    .nav-categorias {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+    .icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-categoria {
+        width: 90%; /* Botones casi de ancho completo */
+        padding: 15px;
+    }
+
+    .navbar {
+        padding: 10px 5%;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .float-wa span {
+        display: none; /* Oculta el texto "¿Dudas?" en móviles muy pequeños para no estorbar */
     }
     
-    .btn-categoria {
-        width: 80%; /* Para que en celular no sean tan anchos */
-        padding: 12px 20px;
+    .float-wa {
+        padding: 15px;
+        border-radius: 50%;
     }
 }
