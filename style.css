@@ -15,95 +15,87 @@ body {
     background-color: var(--fondo-suave);
     color: var(--texto);
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+    overflow-x: hidden;
 }
 
-/* --- NAVBAR SUPERIOR --- */
+/* --- NAVBAR SUPERIOR (LIMPIA) --- */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Mueve todo a la derecha */
     align-items: center;
     padding: 15px 5%;
-    background: rgba(255, 255, 255, 0.9);
-    position: sticky;
+    background: transparent; /* Fondo transparente */
+    position: absolute; /* Para que no estorbe a la imagen */
     top: 0;
+    width: 100%;
     z-index: 1001;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-sizing: border-box;
 }
 
+/* Eliminamos el logo del navbar para no repetir con la imagen */
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--rosa-oscuro);
+    display: none; 
 }
 
+/* Carrito minimalista arriba a la derecha */
 .cart-icon-header {
-    background: white;
-    padding: 8px 15px;
-    border-radius: 50px;
+    background: transparent; /* Sin cuadro blanco */
+    padding: 8px;
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    color: var(--rosa-oscuro); /* Color del icono y número */
+    font-weight: bold;
+    box-shadow: none; /* Quitamos la sombra */
 }
 
 /* --- HEADER / HERO --- */
 header {
-    background: linear-gradient(rgba(218, 166, 170, 0.4), rgba(218, 166, 170, 0.4)),
-                url("images/rosa.png");
-    background-attachment: fixed;
+    background: linear-gradient(rgba(218, 166, 170, 0.2), rgba(218, 166, 170, 0.2)),
+        url("images/rosa2.png");
+    background-attachment: scroll; /* Cambiado para mejor compatibilidad */
     background-position: center;
     background-size: cover;
-    min-height: 70vh; /* Cambiado de height a min-height */
+    min-height: 80vh; /* Un poco más de altura */
     display: flex;
+    flex-direction: column; /* Apila el contenido verticalmente */
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end; /* Empuja el contenido hacia abajo */
     text-align: center;
-    padding: 40px 20px;
+    padding-bottom: 60px; /* Espacio desde el fondo para los botones */
 }
 
-.hero-content h1 {
-    font-size: clamp(2rem, 8vw, 3.5rem); /* Tamaño fluido */
-    margin-bottom: 10px;
-    color: white;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    color: white;
-    margin-bottom: 30px;
-}
-
-/* --- CATEGORÍAS --- */
+/* --- CATEGORÍAS (CENTRADAS Y BAJAS) --- */
 .nav-categorias {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap; /* Importante para móviles */
+    flex-wrap: wrap;
+    margin-top: 250px; /* Empuja los botones hacia abajo para alinearlos con el logo de la foto */
 }
 
 .btn-categoria {
     background-color: var(--rosa-oscuro);
     color: white;
-    padding: 15px 30px;
+    padding: 12px 25px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 2px;
     font-weight: bold;
     transition: 0.3s;
     border: 2px solid var(--rosa-oscuro);
-    min-width: 200px;
+    min-width: 180px;
+    text-transform: uppercase;
 }
 
 .btn-categoria:hover {
-    background-color: transparent;
-    color: white;
+    background-color: white;
+    color: var(--rosa-oscuro);
     border-color: white;
 }
 
-/* --- REDES SOCIALES FLOTANTES --- */
+/* --- REDES SOCIALES --- */
 .social-bar {
     position: fixed;
     right: 15px;
@@ -116,20 +108,15 @@ header {
 }
 
 .icon {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
-}
-
-.social-icon {
-    width: 24px;
-    height: 24px;
 }
 
 /* --- PRODUCTOS --- */
@@ -141,12 +128,11 @@ header {
 }
 
 .product-card {
-    background: rgb(255, 229, 254);
+    background: white;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     border: 1px solid #eee;
-    transition: 0.3s;
 }
 
 .product-image {
@@ -155,7 +141,7 @@ header {
     object-fit: cover;
 }
 
-/* --- BOTONES Y FLOTANTES --- */
+/* --- WHATSAPP --- */
 .float-wa {
     position: fixed;
     bottom: 20px;
@@ -169,67 +155,21 @@ header {
     align-items: center;
     gap: 10px;
     z-index: 2000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* --- MEDIA QUERIES (RESPONSIVIDAD CRÍTICA) --- */
+/* --- MÓVILES --- */
 @media (max-width: 768px) {
     header {
-        min-height: 80vh;
-        background-attachment: scroll; /* Mejor rendimiento en móviles */
+        background-position: 65% center; /* Ajusta la foto para que el logo no se tape en móvil */
+        min-height: 70vh;
     }
 
-    .social-bar {
-        right: 10px; /* Pegamos más a la orilla los iconos */
-    }
-
-    .icon {
-        width: 40px;
-        height: 40px;
+    .nav-categorias {
+        margin-top: 150px; /* Menos margen en móvil */
     }
 
     .btn-categoria {
-        width: 90%; /* Botones casi de ancho completo */
-        padding: 15px;
+        width: 80%;
+        min-width: unset;
     }
-
-    .navbar {
-        padding: 10px 5%;
-    }
-
-    .logo {
-        font-size: 1.4rem;
-    }
-
-    .float-wa span {
-        display: none; /* Oculta el texto "¿Dudas?" en móviles muy pequeños para no estorbar */
-    }
-    
-    .float-wa {
-        padding: 15px;
-        border-radius: 50%;
-    }
-}
-/* Ocultar detalles por defecto */
-.details {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out, opacity 0.3s ease;
-    opacity: 0;
-}
-
-/* Cuando JS activa la clase */
-.details.active {
-    max-height: 200px; /* Un valor lo suficientemente grande para el texto */
-    opacity: 1;
-    margin-top: 10px;
-}
-
-/* Rotación del ícono */
-.chevron-btn i {
-    transition: transform 0.3s ease;
-}
-
-.chevron-btn.rotate i {
-    transform: rotate(180deg);
 }
